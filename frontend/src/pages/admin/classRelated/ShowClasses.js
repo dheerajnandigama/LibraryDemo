@@ -157,9 +157,9 @@ const ShowClasses = () => {
       ) : (
         <>
           {getresponse ? (
-            <Box sx={{ display: "flex", justifyContent: "center", marginTop: "70px", }}>
+            <Box sx={{ display: "flex", justifyContent: "center", marginTop: "70px" }}>
               <GreenButton variant="contained" onClick={() => navigate("/Admin/addclass")}>
-                 Add semester 
+                Add semester
               </GreenButton>
             </Box>
           ) : (

@@ -139,12 +139,7 @@ export default function TeacherSubjectDetails() {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
 
     const handleClick = () => {
-      console.info(`You clicked ${options[selectedIndex]}`);
-      if (selectedIndex === 0) {
-        handleAttendance();
-      } else if (selectedIndex === 1) {
-        handleMarks();
-      }
+      handleMarks();
     };
 
     const handleAttendance = () => {
@@ -174,61 +169,15 @@ export default function TeacherSubjectDetails() {
       <>
         <BlueButton
           variant="contained"
-          onClick={() => navigate("/Teacher/class/student/" + row.id)}
+          onClick={() => navigate("/Teacher/class/student/" + row.id + "/" + subjectID)}
         >
           View
         </BlueButton>
-        {/* <React.Fragment>
+        <React.Fragment>
           <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-            <Button onClick={handleClick}>{options[selectedIndex]}</Button>
-            <BlackButton
-              size="small"
-              aria-controls={open ? "split-button-menu" : undefined}
-              aria-expanded={open ? "true" : undefined}
-              aria-label="select merge strategy"
-              aria-haspopup="menu"
-              onClick={handleToggle}
-            >
-              {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-            </BlackButton>
+            <Button onClick={handleClick}>{"Assign grades"}</Button>
           </ButtonGroup>
-          <Popper
-            sx={{
-              zIndex: 1,
-            }}
-            open={open}
-            anchorEl={anchorRef.current}
-            role={undefined}
-            transition
-            disablePortal
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{
-                  transformOrigin: placement === "bottom" ? "center top" : "center bottom",
-                }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList id="split-button-menu" autoFocusItem>
-                      {options.map((option, index) => (
-                        <MenuItem
-                          key={option}
-                          disabled={index === 2}
-                          selected={index === selectedIndex}
-                          onClick={(event) => handleMenuItemClick(event, index)}
-                        >
-                          {option}
-                        </MenuItem>
-                      ))}
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </React.Fragment> */}
+        </React.Fragment>
       </>
     );
   };
@@ -443,7 +392,7 @@ export default function TeacherSubjectDetails() {
                         </Accordion>
                       );
                     })
-                : "No Announcement"}
+                : "No Assignments"}
             </Paper>
           </Grid>
           <Grid item xs={8}>

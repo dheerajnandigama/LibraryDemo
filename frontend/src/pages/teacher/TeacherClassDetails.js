@@ -96,7 +96,7 @@ const TeacherClassDetails = () => {
         >
           View
         </BlueButton>
-        <React.Fragment>
+        {/* <React.Fragment>
           <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
             <Button onClick={handleClick}>{options[selectedIndex]}</Button>
             <BlackButton
@@ -146,7 +146,7 @@ const TeacherClassDetails = () => {
               </Grow>
             )}
           </Popper>
-        </React.Fragment>
+        </React.Fragment> */}
       </>
     );
   };
@@ -158,7 +158,7 @@ const TeacherClassDetails = () => {
       ) : (
         <>
           <Typography variant="h4" align="center" gutterBottom>
-            Class Details
+            Student List
           </Typography>
           {getresponse ? (
             <>
@@ -168,10 +168,6 @@ const TeacherClassDetails = () => {
             </>
           ) : (
             <Paper sx={{ width: "50%", overflow: "hidden", mx: "auto" }}>
-              <Typography variant="h5" gutterBottom>
-                Students List:
-              </Typography>
-
               {Array.isArray(sclassStudents) && sclassStudents.length > 0 && (
                 <TableTemplate
                   buttonHaver={StudentsButtonHaver}
