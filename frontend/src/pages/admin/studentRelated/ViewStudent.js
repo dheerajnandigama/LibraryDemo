@@ -241,18 +241,18 @@ const ViewStudent = () => {
             })}
           </Table>
           {/* <div>Overall Attendance Percentage: {overallAttendancePercentage.toFixed(2)}%</div> */}
-          <Button
+          {/* <Button
             variant="contained"
             color="error"
             startIcon={<DeleteIcon />}
             onClick={() => removeHandler(studentID, "RemoveStudentAtten")}
           >
             Delete All
-          </Button>
+          </Button> */}
           <Button
             variant="contained"
             sx={styles.styledButton}
-            onClick={() => navigate("/Admin/students/student/attendance/" + studentID)}
+            onClick={() => navigate("/Admin/subjects")}
           >
             Add Subject
           </Button>
@@ -296,7 +296,7 @@ const ViewStudent = () => {
           <Button
             variant="contained"
             sx={styles.styledButton}
-            onClick={() => navigate("/Admin/students/student/attendance/" + studentID)}
+            onClick={() => navigate("/Admin/subjects")}
           >
             Add Subject
           </Button>
@@ -400,9 +400,9 @@ const ViewStudent = () => {
         {/* {subjectAttendance && Array.isArray(subjectAttendance) && subjectAttendance.length > 0 && (
           <CustomPieChart data={chartData} />
         )} */}
-        <Button variant="contained" sx={styles.styledButton} onClick={deleteHandler}>
+        {/* <Button variant="contained" sx={styles.styledButton} onClick={deleteHandler}>
           Delete
-        </Button>
+        </Button> */}
         <br />
         {/* <Button variant="contained" sx={styles.styledButton} className="show-tab" onClick={() => { setShowTab(!showTab) }}>
                     {
@@ -494,7 +494,8 @@ const styles = {
   },
   styledButton: {
     margin: "20px",
-    backgroundColor: "#02250b",
+    color: "white",
+    backgroundColor: "#277229",
     "&:hover": {
       backgroundColor: "#106312",
     },

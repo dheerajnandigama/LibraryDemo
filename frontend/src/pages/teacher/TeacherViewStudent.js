@@ -21,6 +21,7 @@ const TeacherViewStudent = () => {
 
   const address = "Student";
   const studentID = params.id;
+  const subId = params.subId;
   const teachSubject = currentUser.teachSubject?.subName;
   const teachSubjectID = currentUser.teachSubject?._id;
 
@@ -50,6 +51,7 @@ const TeacherViewStudent = () => {
 
   useEffect(() => {
     if (userDetails) {
+      console.log(userDetails);
       setSclassName(userDetails.sclassName || "");
       setStudentSchool(userDetails.school || "");
       setSubjectMarks(userDetails.examResult || "");
@@ -186,7 +188,8 @@ const TeacherViewStudent = () => {
                 </TableHead>
                 <TableBody>
                   {subjectMarks.map((result, index) => {
-                    if (result.subName.subName === teachSubject) {
+                    console.log(result, subId);
+                    if (result.subName._id === subId) {
                       return (
                         <StyledTableRow>
                           <StyledTableCell>{result.description}</StyledTableCell>
@@ -204,7 +207,7 @@ const TeacherViewStudent = () => {
           )}
           <PurpleButton
             variant="contained"
-            onClick={() => navigate(`/Teacher/class/student/marks/${studentID}/${teachSubjectID}`)}
+            onClick={() => navigate(`/Teacher/class/student/marks/${studentID}/${subId}`)}
           >
             Add Grades
           </PurpleButton>

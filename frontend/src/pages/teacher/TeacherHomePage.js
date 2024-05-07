@@ -97,7 +97,7 @@ const TeacherHomePage = () => {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper sx={{ p: 2, mb: 4, display: "flex", flexDirection: "column" }}>
-             Your Subjects
+              Subjects your teaching
             </Paper>
           </Grid>
           <>
