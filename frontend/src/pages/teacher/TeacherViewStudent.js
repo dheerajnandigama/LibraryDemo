@@ -2,7 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails } from "../../redux/userRelated/userHandle";
 import { useNavigate, useParams } from "react-router-dom";
-import { Box, Button, Collapse, Table, TableBody, TableHead, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Collapse,
+  Table,
+  TableBody,
+  TableHead,
+  Typography,
+  Container,
+} from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import {
   calculateOverallAttendancePercentage,
@@ -75,15 +87,41 @@ const TeacherViewStudent = () => {
         </>
       ) : (
         <div>
-          Name: {userDetails.name}
-          <br />
-          Roll Number: {userDetails.rollNum}
-          <br />
-          Class: {sclassName.sclassName}
-          <br />
-          School: {studentSchool.schoolName}
-          <br />
-          <br />
+          <Container
+            fixed
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              mt: 1,
+            }}
+          >
+            <Card sx={{ display: "flex" }}>
+              <Box sx={{ display: "flex", flexDirection: "column", width: 650 }}>
+                <CardContent sx={{ flex: "1 0 auto" }}>
+                  <Typography component="div" variant="h2">
+                    {userDetails.name}
+                  </Typography>
+                  <Typography variant="h5" color="text.secondary" component="div" sx={{ mt: 2 }}>
+                    {userDetails.rollNum}
+                  </Typography>
+                  <Typography component="div" variant="h4" sx={{ mt: 2 }}>
+                    Class: {sclassName.sclassName}
+                  </Typography>
+                  <Typography component="div" variant="h4" sx={{ mt: 2 }}>
+                    School: {studentSchool.schoolName}
+                  </Typography>
+                </CardContent>
+              </Box>
+              <CardMedia
+                component="img"
+                sx={{ width: 400, height: 400 }}
+                image={require("../../assets/admin.png")}
+                alt="Admin Image"
+              />
+            </Card>
+          </Container>
+
           {/* <h3>Attendance:</h3>
                     {subjectAttendance && Array.isArray(subjectAttendance) && subjectAttendance.length > 0
                         &&
@@ -205,12 +243,14 @@ const TeacherViewStudent = () => {
               </Table>
             </>
           )}
-          <PurpleButton
-            variant="contained"
-            onClick={() => navigate(`/Teacher/class/student/marks/${studentID}/${subId}`)}
-          >
-            Add Grades
-          </PurpleButton>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <PurpleButton
+              variant="contained"
+              onClick={() => navigate(`/Teacher/class/student/marks/${studentID}/${subId}`)}
+            >
+              Add Grades
+            </PurpleButton>
+          </Box>
           <br />
           <br />
           <br />

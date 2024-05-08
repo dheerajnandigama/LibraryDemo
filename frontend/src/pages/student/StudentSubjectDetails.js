@@ -389,48 +389,48 @@ export default function StudentSubjectDetails() {
         <Paper sx={{ height: "400px", padding: "10px", mx: "auto" }}>
           {subjectDetails?.announcements
             ?.filter((each) => each.type === "assignment")
-            ?.sort((a, b) => parseInt(b.deadline) - parseInt(a.deadline))?.length > 0
-            ? subjectDetails?.announcements
-                ?.filter((each) => each.type === "assignment")
-                ?.sort((a, b) => parseInt(a.deadline) - parseInt(b.deadline))
-                ?.map((each) => {
-                  return (
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<KeyboardArrowDown />}
-                        aria-controls="panel1-content"
-                        id="panel1-header"
+            ?.sort((a, b) => parseInt(b.deadline) - parseInt(a.deadline))?.length > 0 ? (
+            subjectDetails?.announcements
+              ?.filter((each) => each.type === "assignment")
+              ?.sort((a, b) => parseInt(a.deadline) - parseInt(b.deadline))
+              ?.map((each) => {
+                return (
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<KeyboardArrowDown />}
+                      aria-controls="panel1-content"
+                      id="panel1-header"
+                    >
+                      <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        spacing={2}
+                        width={"100%"}
                       >
-                        <Stack
-                          direction="row"
-                          justifyContent="space-between"
-                          alignItems="center"
-                          spacing={2}
-                          width={"100%"}
-                        >
-                          {each.title}
-                          <Chip
-                            color={"error"}
-                            label={`Due on ${dayjs.unix(each.deadline).format("MM/DD/YYYY")}`}
-                          />
-                        </Stack>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <ThemeProvider theme={announcementTheme}>
-                          <MUIRichTextEditor
-                            label="add assignment details here....."
-                            defaultValue={each.description}
-                            readOnly
-                          />
-                        </ThemeProvider>
-                        <Stack
-                          direction="row"
-                          justifyContent="space-between"
-                          alignItems="center"
-                          spacing={2}
-                          width={"100%"}
-                        >
-                          {/* <div
+                        {each.title}
+                        <Chip
+                          color={"error"}
+                          label={`Due on ${dayjs.unix(each.deadline).format("MM/DD/YYYY")}`}
+                        />
+                      </Stack>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <ThemeProvider theme={announcementTheme}>
+                        <MUIRichTextEditor
+                          label="add assignment details here....."
+                          defaultValue={each.description}
+                          readOnly
+                        />
+                      </ThemeProvider>
+                      <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        spacing={2}
+                        width={"100%"}
+                      >
+                        {/* <div
                             onClick={() => {
                               setSelectedAssignment(each);
                             }}
@@ -445,15 +445,17 @@ export default function StudentSubjectDetails() {
                               Edit
                             </Typography>
                           </div> */}
-                          <Typography variant="caption" display="block" gutterBottom>
-                            Posted on: {dayjs.unix(each.postedOn).format("MM/DD/YYYY")}
-                          </Typography>
-                        </Stack>
-                      </AccordionDetails>
-                    </Accordion>
-                  );
-                })
-            : "No Announcement"}
+                        <Typography variant="caption" display="block" gutterBottom>
+                          Posted on: {dayjs.unix(each.postedOn).format("MM/DD/YYYY")}
+                        </Typography>
+                      </Stack>
+                    </AccordionDetails>
+                  </Accordion>
+                );
+              })
+          ) : (
+            <h3 style={{ textAlign: "center" }}>No Assignment</h3>
+          )}
         </Paper>
         {/* <Grid item xs={8}>
             <Box
@@ -550,71 +552,73 @@ export default function StudentSubjectDetails() {
         <Paper sx={{ height: "400px", padding: "10px", mx: "auto" }}>
           {subjectDetails?.announcements
             ?.filter((each) => each.type === "announcement")
-            ?.sort((a, b) => parseInt(b.postedOn) - parseInt(a.postedOn))?.length > 0
-            ? subjectDetails?.announcements
-                ?.filter((each) => each.type === "announcement")
-                ?.sort((a, b) => parseInt(b.postedOn) - parseInt(a.postedOn))
-                ?.map((each) => {
-                  return (
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<KeyboardArrowDown />}
-                        aria-controls="panel1-content"
-                        id="panel1-header"
+            ?.sort((a, b) => parseInt(b.postedOn) - parseInt(a.postedOn))?.length > 0 ? (
+            subjectDetails?.announcements
+              ?.filter((each) => each.type === "announcement")
+              ?.sort((a, b) => parseInt(b.postedOn) - parseInt(a.postedOn))
+              ?.map((each) => {
+                return (
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<KeyboardArrowDown />}
+                      aria-controls="panel1-content"
+                      id="panel1-header"
+                    >
+                      <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        spacing={2}
+                        width={"100%"}
                       >
-                        <Stack
-                          direction="row"
-                          justifyContent="space-between"
-                          alignItems="center"
-                          spacing={2}
-                          width={"100%"}
+                        {each.title}
+                        <Chip
+                          color={"primary"}
+                          label={`Posted on ${dayjs.unix(each.postedOn).format("MM/DD/YYYY")}`}
+                        />
+                      </Stack>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <ThemeProvider theme={announcementTheme}>
+                        <MUIRichTextEditor
+                          label="add announcement details here....."
+                          defaultValue={each.description}
+                          readOnly
+                        />
+                      </ThemeProvider>
+                      <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        spacing={2}
+                        width={"100%"}
+                      >
+                        <div
+                          onClick={() => {
+                            setSelectedAssignment(each);
+                          }}
                         >
-                          {each.title}
-                          <Chip
-                            color={"primary"}
-                            label={`Posted on ${dayjs.unix(each.postedOn).format("MM/DD/YYYY")}`}
-                          />
-                        </Stack>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <ThemeProvider theme={announcementTheme}>
-                          <MUIRichTextEditor
-                            label="add announcement details here....."
-                            defaultValue={each.description}
-                            readOnly
-                          />
-                        </ThemeProvider>
-                        <Stack
-                          direction="row"
-                          justifyContent="space-between"
-                          alignItems="center"
-                          spacing={2}
-                          width={"100%"}
-                        >
-                          <div
-                            onClick={() => {
-                              setSelectedAssignment(each);
-                            }}
+                          <Typography
+                            variant="overline"
+                            display="block"
+                            gutterBottom
+                            color={"blue"}
+                            style={{ cursor: "pointer" }}
                           >
-                            <Typography
-                              variant="overline"
-                              display="block"
-                              gutterBottom
-                              color={"blue"}
-                              style={{ cursor: "pointer" }}
-                            >
-                              Edit
-                            </Typography>
-                          </div>
-                          <Typography variant="caption" display="block" gutterBottom>
-                            Posted on: {dayjs.unix(each.postedOn).format("MM/DD/YYYY")}
+                            Edit
                           </Typography>
-                        </Stack>
-                      </AccordionDetails>
-                    </Accordion>
-                  );
-                })
-            : "No Announcement"}
+                        </div>
+                        <Typography variant="caption" display="block" gutterBottom>
+                          Posted on: {dayjs.unix(each.postedOn).format("MM/DD/YYYY")}
+                        </Typography>
+                      </Stack>
+                    </AccordionDetails>
+                  </Accordion>
+                );
+              })
+          ) : (
+            <h3 style={{ textAlign: "center" }}>No Announcement</h3>
+          )}
         </Paper>
         {/* <Grid container spacing={2}>
           <Grid item xs={4}>
@@ -712,7 +716,7 @@ export default function StudentSubjectDetails() {
         </Grid> */}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-        {subjectMarks && Array.isArray(subjectMarks) && subjectMarks.length > 0 && (
+        {subjectMarks && Array.isArray(subjectMarks) && subjectMarks.length > 0 ? (
           <>
             <h3>Grades:</h3>
             <Table>
@@ -740,6 +744,8 @@ export default function StudentSubjectDetails() {
               </TableBody>
             </Table>
           </>
+        ) : (
+          <h3 style={{ textAlign: "center" }}>No grades allocated</h3>
         )}
       </CustomTabPanel>
       <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />

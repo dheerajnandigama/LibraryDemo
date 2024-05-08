@@ -174,7 +174,12 @@ export default function TeacherSubjectDetails() {
           View
         </BlueButton>
         <React.Fragment>
-          <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
+          <ButtonGroup
+            variant="contained"
+            ref={anchorRef}
+            aria-label="split button"
+            style={{ marginLeft: "20px" }}
+          >
             <Button onClick={handleClick}>{"Assign grades"}</Button>
           </ButtonGroup>
         </React.Fragment>

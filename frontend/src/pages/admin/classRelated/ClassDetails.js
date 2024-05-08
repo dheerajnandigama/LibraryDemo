@@ -118,7 +118,7 @@ const ClassDetails = () => {
     return (
       <>
         {response ? (
-          <Box sx={{ display: "flex", justifyContent: "flex-end", marginTop: "16px" }}>
+          <Box sx={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
             <GreenButton
               variant="contained"
               onClick={() => navigate("/Admin/addsubject/" + classID)}
@@ -232,7 +232,7 @@ const ClassDetails = () => {
       <>
         {getresponse ? (
           <>
-            <Box sx={{ display: "flex", justifyContent: "flex-end", marginTop: "16px" }}>
+            <Box sx={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
               <GreenButton
                 variant="contained"
                 onClick={() => navigate("/Admin/class/addstudents/" + classID)}
@@ -272,7 +272,7 @@ const ClassDetails = () => {
       <>
         {getresponse ? (
           <>
-            <Box sx={{ display: "flex", justifyContent: "flex-end", marginTop: "16px" }}>
+            <Box sx={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
               <GreenButton variant="contained" onClick={() => navigate("/Admin/teachers/")}>
                 Add Faculty
               </GreenButton>
@@ -318,6 +318,7 @@ const ClassDetails = () => {
           <GreenButton
             variant="contained"
             onClick={() => navigate("/Admin/class/addstudents/" + classID)}
+            style={{ marginRight: "20px" }}
           >
             Add Students
           </GreenButton>
