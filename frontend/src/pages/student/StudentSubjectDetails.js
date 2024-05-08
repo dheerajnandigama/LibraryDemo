@@ -598,7 +598,7 @@ export default function StudentSubjectDetails() {
                             setSelectedAssignment(each);
                           }}
                         >
-                          <Typography
+                          {/* <Typography
                             variant="overline"
                             display="block"
                             gutterBottom
@@ -606,7 +606,7 @@ export default function StudentSubjectDetails() {
                             style={{ cursor: "pointer" }}
                           >
                             Edit
-                          </Typography>
+                          </Typography> */}
                         </div>
                         <Typography variant="caption" display="block" gutterBottom>
                           Posted on: {dayjs.unix(each.postedOn).format("MM/DD/YYYY")}

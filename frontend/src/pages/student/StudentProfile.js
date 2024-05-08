@@ -1,16 +1,19 @@
-import React from 'react'
-import styled from 'styled-components';
-import { Card, CardContent, Typography, Grid, Box, Avatar, Container, Paper } from '@mui/material';
-import { useSelector } from 'react-redux';
+import React from "react";
+import styled from "styled-components";
+import { Card, CardContent, Typography, Grid, Box, Avatar, Container, Paper } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const StudentProfile = () => {
   const { currentUser, response, error } = useSelector((state) => state.user);
 
-  if (response) { console.log(response) }
-  else if (error) { console.log(error) }
+  if (response) {
+    console.log(response);
+  } else if (error) {
+    console.log(error);
+  }
 
-  const sclassName = currentUser.sclassName
-  const studentSchool = currentUser.school
+  const sclassName = currentUser.sclassName;
+  const studentSchool = currentUser.school;
 
   return (
     <>
@@ -54,7 +57,7 @@ const StudentProfile = () => {
             </Grid>
           </Grid>
         </StyledPaper>
-        <Card>
+        {/* <Card>
           <CardContent>
             <Typography variant="h6" gutterBottom>
               Personal Information
@@ -92,13 +95,13 @@ const StudentProfile = () => {
               </Grid>
             </Grid>
           </CardContent>
-        </Card>
+        </Card> */}
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default StudentProfile
+export default StudentProfile;
 
 const StyledPaper = styled(Paper)`
   padding: 20px;
