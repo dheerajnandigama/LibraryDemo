@@ -23,6 +23,9 @@ import {
   ClickAwayListener,
   MenuList,
   MenuItem,
+  Table,
+  TableBody,
+  TableHead,
   Stack,
   Tab,
   Tabs,
@@ -32,6 +35,8 @@ import {
   AccordionDetails,
   IconButton,
 } from "@mui/material";
+import { StyledTableCell, StyledTableRow } from "../../components/styles";
+
 import { BlackButton, BlueButton } from "../../components/buttonStyles";
 import TableTemplate from "../../components/TableTemplate";
 import { KeyboardArrowDown, KeyboardArrowUp, Edit } from "@mui/icons-material";
@@ -95,6 +100,7 @@ export default function StudentSubjectDetails() {
   const [assignmentMarks, setAssignmentMarks] = useState(100);
   const [assignmentDueDate, setAssignmentDueDate] = useState(null);
   const [selectedAssignment, setSelectedAssignment] = useState(null);
+  const [subjectMarks, setSubjectMarks] = useState("");
 
   useEffect(() => {
     dispatch(getClassSubjectStudents(classID, subjectID));
@@ -102,8 +108,12 @@ export default function StudentSubjectDetails() {
   }, [dispatch, classID, subjectID]);
 
   useEffect(() => {
-    console.log(subjectDetails);
-  }, [subjectDetails]);
+    const currentStudent = sclassStudents.filter((ele) => {
+      return ele._id === currentUser._id;
+    })[0];
+    console.log(currentStudent);
+    setSubjectMarks(currentStudent?.examResult ?? []);
+  }, [subjectDetails, sclassStudents]);
 
   useEffect(() => {
     if (selectedAssignment) {
@@ -326,13 +336,14 @@ export default function StudentSubjectDetails() {
           {/* <Tab label="Students" {...a11yProps(1)} /> */}
           <Tab label="Assignment" {...a11yProps(1)} />
           <Tab label="Announcement" {...a11yProps(2)} />
+          <Tab label="Grades" {...a11yProps(3)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
         <Paper sx={{ width: "50%", padding: "10px", mx: "auto" }}>
           <ThemeProvider theme={editorTheme}>
             <MUIRichTextEditor
-              label="add your syllabus here....."
+              label="no syllabus added"
               ref={ref}
               onSave={saveSyllabus}
               defaultValue={subjectDetails?.syllabus}
@@ -699,6 +710,37 @@ export default function StudentSubjectDetails() {
             </Box>
           </Grid>
         </Grid> */}
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={3}>
+        {subjectMarks && Array.isArray(subjectMarks) && subjectMarks.length > 0 && (
+          <>
+            <h3>Grades:</h3>
+            <Table>
+              <TableHead>
+                <StyledTableRow>
+                  <StyledTableCell>Description</StyledTableCell>
+                  <StyledTableCell>Grades</StyledTableCell>
+                </StyledTableRow>
+              </TableHead>
+              <TableBody>
+                {subjectMarks.map((result, index) => {
+                  console.log(result);
+                  if (result.subName === subjectID) {
+                    return (
+                      <StyledTableRow>
+                        <StyledTableCell>{result.description}</StyledTableCell>
+                        <StyledTableCell>{result.marksObtained}</StyledTableCell>
+                      </StyledTableRow>
+                    );
+                  } else if (!result.subName || !result.marksObtained) {
+                    return null;
+                  }
+                  return null;
+                })}
+              </TableBody>
+            </Table>
+          </>
+        )}
       </CustomTabPanel>
       <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
     </div>
