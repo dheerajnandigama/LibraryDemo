@@ -1,3 +1,7 @@
+import { useTheme } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, getUserDetails, updateUser } from "../../../redux/userRelated/userHandle";
@@ -389,56 +393,43 @@ const ViewStudent = () => {
 
   const StudentDetailsSection = () => {
     return (
-      <div>
-        Name: {userDetails.name}
-        <br />
-        Roll Number: {userDetails.rollNum}
-        <br />
-        {/* Class: {sclassName.sclassName} */}
-        <br />
-        School: {studentSchool.schoolName}
-        {/* {subjectAttendance && Array.isArray(subjectAttendance) && subjectAttendance.length > 0 && (
-          <CustomPieChart data={chartData} />
-        )} */}
-        {/* <Button variant="contained" sx={styles.styledButton} onClick={deleteHandler}>
-          Delete
-        </Button> */}
-        <br />
-        {/* <Button variant="contained" sx={styles.styledButton} className="show-tab" onClick={() => { setShowTab(!showTab) }}>
-                    {
-                        showTab
-                            ? <KeyboardArrowUp />
-                            : <KeyboardArrowDown />
-                    }
-                    Edit Student
-                </Button>
-                <Collapse in={showTab} timeout="auto" unmountOnExit>
-                    <div className="register">
-                        <form className="registerForm" onSubmit={submitHandler}>
-                            <span className="registerTitle">Edit Details</span>
-                            <label>Name</label>
-                            <input className="registerInput" type="text" placeholder="Enter user's name..."
-                                value={name}
-                                onChange={(event) => setName(event.target.value)}
-                                autoComplete="name" required />
-
-                            <label>Roll Number</label>
-                            <input className="registerInput" type="number" placeholder="Enter user's Roll Number..."
-                                value={rollNum}
-                                onChange={(event) => setRollNum(event.target.value)}
-                                required />
-
-                            <label>Password</label>
-                            <input className="registerInput" type="password" placeholder="Enter user's password..."
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
-                                autoComplete="new-password" />
-
-                            <button className="registerButton" type="submit" >Update</button>
-                        </form>
-                    </div>
-                </Collapse> */}
-      </div>
+      // <div>
+      //   Name: {userDetails.name}
+      //   Roll Number: {userDetails.rollNum}
+      //   School: {studentSchool.schoolName}
+        
+      // </div>
+      <Container
+            fixed
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+            }}
+        >
+            <Card sx={{ display: 'flex' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', width: 650 }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                        <Typography component="div" variant="h2">
+                            {userDetails.name}
+                        </Typography>
+                        <Typography variant="h5" color="text.secondary" component="div" sx={{ mt: 2 }}>
+                        Roll Number: {userDetails.rollNum}
+                        </Typography>
+                        <Typography component="div" variant="h4" sx={{ mt: 15 }}>
+                            School: {studentSchool.schoolName}
+                        </Typography>
+                    </CardContent>
+                </Box>
+                <CardMedia
+                    component="img"
+                    sx={{ width: 400, height: 400 }}
+                    image={require('../../../assets/student.jpg')}
+                    alt="Admin Image"
+                />
+            </Card>
+        </Container>
     );
   };
 

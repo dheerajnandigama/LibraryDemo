@@ -96,8 +96,8 @@ const SubjectForm = () => {
 
   return (
     <form onSubmit={submitHandler}>
-      <Box mb={2}>
-        <Typography variant="h6">Add Subjects</Typography>
+      <Box mb={2} sx={{ display: "flex", justifyContent: "center", marginTop: "70px" }}>
+        <Typography variant="h4">Add Subjects</Typography>
       </Box>
       <Paper sx={{ width: "50%", height: "100%", padding: "10px", mx: "auto" }}>
         <Grid container spacing={2}>
@@ -153,15 +153,6 @@ const SubjectForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Box display="flex" alignItems="flex-end">
-                  {index === 0 ? (
-                    <Button variant="outlined" color="primary" onClick={handleAddSubject}>
-                      Add Subject
-                    </Button>
-                  ) : (
-                    <Button variant="outlined" color="error" onClick={handleRemoveSubject(index)}>
-                      Remove
-                    </Button>
-                  )}
                 </Box>
               </Grid>
             </React.Fragment>

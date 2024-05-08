@@ -19,7 +19,7 @@ const AdminProfile = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '100vh', // Make the container full height of the viewport
+                height: '100vh',
             }}
         >
             <Card sx={{ display: 'flex' }}>
