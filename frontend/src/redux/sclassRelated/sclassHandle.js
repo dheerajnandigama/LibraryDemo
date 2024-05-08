@@ -73,6 +73,7 @@ export const getClassDetails = (id, address) => async (dispatch) => {
 };
 
 export const getSubjectList = (id, address) => async (dispatch) => {
+  console.log({ id, address });
   dispatch(getRequest());
 
   try {

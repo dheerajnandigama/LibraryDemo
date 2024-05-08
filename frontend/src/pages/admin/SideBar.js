@@ -57,14 +57,14 @@ const SideBar = () => {
           </ListItemIcon>
           <ListItemText primary="Students" />
         </ListItemButton>
-        <ListItemButton component={Link} to="/Admin/notices">
+        {/* <ListItemButton component={Link} to="/Admin/notices">
           <ListItemIcon>
             <AnnouncementOutlinedIcon
               color={location.pathname.startsWith("/Admin/notices") ? "primary" : "inherit"}
             />
           </ListItemIcon>
           <ListItemText primary="Announcements" />
-        </ListItemButton>
+        </ListItemButton> */}
         {/* <ListItemButton component={Link} to="/Admin/complains">
           <ListItemIcon>
             <ReportIcon
