@@ -8,9 +8,15 @@ import styled from "styled-components";
 import CountUp from "react-countup";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getAllSclasses } from "../../redux/sclassRelated/sclassHandle";
+import {
+  getAllSclasses,
+  getClassStudents,
+  getSubjectList,
+} from "../../redux/sclassRelated/sclassHandle";
+import { resetSubjects } from "../../redux/sclassRelated/sclassSlice";
 import { getAllStudents } from "../../redux/studentRelated/studentHandle";
 import { getAllTeachers } from "../../redux/teacherRelated/teacherHandle";
+import { deleteUser } from "../../redux/userRelated/userHandle";
 import TableTemplate from "../../components/TableTemplate";
 import { BlueButton } from "../../components/buttonStyles";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -50,12 +56,9 @@ const AdminHomePage = () => {
     console.log(address);
     setMessage("Sorry the delete function has been disabled for now.");
     setShowPopup(true);
-    // dispatch(deleteUser(deleteID, address))
-    //     .then(() => {
-    //         dispatch(getClassStudents(classID));
-    //         dispatch(resetSubjects())
-    //         dispatch(getSubjectList(classID, "ClassSubjects"))
-    //     })
+    dispatch(deleteUser(deleteID, address)).then(() => {
+      window.location.reload();
+    });
   };
 
   const studentColumns = [
@@ -70,7 +73,7 @@ const AdminHomePage = () => {
       id: student._id,
     };
   });
-  console.log(sclassStudents)
+  console.log(sclassStudents);
 
   const facultycolumns = [
     { id: "name", label: "Name", minWidth: 170 },
@@ -167,22 +170,22 @@ const AdminHomePage = () => {
     <>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={4} lg={4} >
-            <StyledPaper sx={{ border: "1px solid #4CAF50", borderRadius: "8px"}}>
+          <Grid item xs={12} md={4} lg={4}>
+            <StyledPaper sx={{ border: "1px solid #4CAF50", borderRadius: "8px" }}>
               <img src={Students} alt="Students" />
               <Title>Total Students</Title>
               <Data start={0} end={numberOfStudents} duration={2.5} />
             </StyledPaper>
           </Grid>
           <Grid item xs={12} md={4} lg={4}>
-            <StyledPaper sx={{ border: "1px solid #4CAF50", borderRadius: "8px"}}>
+            <StyledPaper sx={{ border: "1px solid #4CAF50", borderRadius: "8px" }}>
               <img src={Classes} alt="Classes" />
               <Title>Total Semester</Title>
               <Data start={0} end={numberOfClasses} duration={5} />
             </StyledPaper>
           </Grid>
           <Grid item xs={12} md={4} lg={4}>
-            <StyledPaper sx={{ border: "1px solid #4CAF50", borderRadius: "8px"}}>
+            <StyledPaper sx={{ border: "1px solid #4CAF50", borderRadius: "8px" }}>
               <img src={Teachers} alt="Teachers" />
               <Title>Total Faculty</Title>
               <Data start={0} end={numberOfTeachers} duration={2.5} />
@@ -192,7 +195,7 @@ const AdminHomePage = () => {
       </Container>
       <Container maxWidth="xl" sx={{ mt: 2, mb: 2 }}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={6} >
+          <Grid item xs={12} md={6} lg={6}>
             {teachersList.length > 0 && (
               <TableTemplate
                 buttonHaver={FacultyButtonHaver}
@@ -201,7 +204,7 @@ const AdminHomePage = () => {
               />
             )}
           </Grid>
-          <Grid item xs={12} md={6} lg={6} >
+          <Grid item xs={12} md={6} lg={6}>
             {studentsList.length > 0 && (
               <TableTemplate
                 buttonHaver={StudentsButtonHaver}
@@ -212,7 +215,6 @@ const AdminHomePage = () => {
           </Grid>
         </Grid>
       </Container>
-
     </>
   );
 };
